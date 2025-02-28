@@ -1,0 +1,42 @@
+﻿@model ExpenseTracker.Models.Expense
+
+@{
+    ViewBag.Title = "Add Expense";
+}
+
+<h2>Add Expense</h2>
+
+@using (Html.BeginForm("Create", "Expense", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Title</label>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Title)
+    </div>
+
+    <div class="form-group">
+        <label>Amount</label>
+        @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", type = "number" })
+        @Html.ValidationMessageFor(model => model.Amount)
+    </div>
+
+    <div class="form-group">
+        <label>Date</label>
+        @Html.TextBoxFor(model => model.Date, new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(model => model.Date)
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        @Html.DropDownListFor(model => model.CategoryId,
+            new SelectList(ViewBag.Categories, "Id", "Name"),
+            "-- Select Category --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryId)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+<a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
+
+@{
+    ViewBag.Title = "Expense List";
+}
+
+<h2>Expense List</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Add New Expense</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Amount</td>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td>@item.Category.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<<a href="@Url.Action("Report")" class="btn btn-success">View

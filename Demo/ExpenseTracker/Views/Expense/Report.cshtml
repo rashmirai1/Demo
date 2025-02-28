@@ -1,0 +1,18 @@
+﻿<script src="https://code.highcharts.com/highcharts.js"></script>
+<div id="expenseChart"></div>
+
+<script>
+    $(document).ready(function () {
+        $.getJSON('/Expense/Report', function (data) {
+            Highcharts.chart('expenseChart', {
+                chart: { type: 'column' },
+                title: { text: 'Monthly Expense Report' },
+                xAxis: { categories: Object.keys(data) },
+                yAxis: { title: { text: 'Amount Spent' } },
+                series: [{ name: 'Expenses', data: Object.values(data) }]
+            });
+        });
+    });
+</script>
+<a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+
