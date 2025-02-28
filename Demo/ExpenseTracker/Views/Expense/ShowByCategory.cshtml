@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
+
+<h2>Expenses for @ViewBag.CategoryName</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Category</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Amount</td>
+            <td>@item.Date.ToString("yyyy-MM-dd")</td>
+            
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,18 +1,39 @@
-﻿<script src="https://code.highcharts.com/highcharts.js"></script>
-<div id="expenseChart"></div>
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
 
-<script>
-    $(document).ready(function () {
-        $.getJSON('/Expense/Report', function (data) {
-            Highcharts.chart('expenseChart', {
-                chart: { type: 'column' },
-                title: { text: 'Monthly Expense Report' },
-                xAxis: { categories: Object.keys(data) },
-                yAxis: { title: { text: 'Amount Spent' } },
-                series: [{ name: 'Expenses', data: Object.values(data) }]
-            });
-        });
-    });
-</script>
-<a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+@{
+    ViewBag.Title = "Expenses by Category";
+}
 
+<h2>Expenses by Category</h2>
+
+<!-- Category Dropdown -->
+@using (Html.BeginForm("ShowByCategory", "Expense", FormMethod.Get))
+{
+    <label>Select Category:</label>
+    @Html.DropDownList("categoryId", ViewBag.Categories as SelectList, "-- Select Category --", new { @class = "form-control", onchange = "this.form.submit();" })
+}
+
+
+<!-- Expense List -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Amount</td>
+                <td>@item.Date </td>
+                <td>@(item.Category != null ? item.Category.Name : "No Category")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("Create", "Expense")" class="btn btn-success">Add New Expense</a>
+<a href="@Url.Action("ShowByCategory", "Expense")" class="btn btn-info">Filter by Category</a>

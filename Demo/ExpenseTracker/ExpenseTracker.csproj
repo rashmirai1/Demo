@@ -153,6 +153,7 @@
     <Compile Include="Interface\IExpenseRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\ExpenseRepository.cs" />
+    <Compile Include="Repository\MonthlyExpenseReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -195,6 +196,7 @@
     <Content Include="Views\Expense\Edit.cshtml" />
     <Content Include="Views\Expense\Create.cshtml" />
     <Content Include="Views\Expense\DeleteConfirmed.cshtml" />
+    <Content Include="Views\Expense\ShowByCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
