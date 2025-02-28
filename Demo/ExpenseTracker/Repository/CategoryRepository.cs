@@ -14,7 +14,7 @@ namespace ExpenseTracker.Repository
 
         public CategoryRepository(ExpenseDBContext context)
         {
-            _context = context;
+            _context =  context;
         }
 
         public void Add(Category category)
