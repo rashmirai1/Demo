@@ -100,17 +100,13 @@ namespace ExpenseTracker.Controllers
         // GET: Expense/Report
         public ActionResult Report()
         {
-            var reportData = _expenseRepository.GetMonthlyReport();
-            return Json(reportData, JsonRequestBehavior.AllowGet);
+            var report = _expenseRepository.GetMonthlyReport();
+            return View(report);
         }
         public ActionResult ShowByCategory(int? categoryId)
         {
-            var expenses = _expenseRepository.GetAll()
-                       .Include(e => e.Category)  // Ensure Category is loaded
-                      .AsNoTracking()            // Prevent proxy objects
-                      .Where(e => !categoryId.HasValue || e.CategoryId == categoryId)
-                     .ToList();
-            ViewBag.Categories = new SelectList(_categoryRepository.GetAll(), "Id", "Name", categoryId);
+            var expenses = _expenseRepository.GetExpensesByCategory(categoryId);
+            ViewBag.CategoryName = _categoryRepository.GetById(categoryId)?.Name;
             return View(expenses);
         }
 

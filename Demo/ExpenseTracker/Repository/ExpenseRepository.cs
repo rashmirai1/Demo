@@ -46,14 +46,26 @@ namespace ExpenseTracker.Repository
 
         public IEnumerable<Expense> GetExpensesByCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            return _context.Expenses
+       .Include(e => e.Category)  // Ensure Category data is loaded
+       .Where(e => e.CategoryId == categoryId) // Filter by Category
+       .OrderByDescending(e => e.Date) // Sort by Date (latest first)
+       .ToList();
         }
 
         public Dictionary<string, decimal> GetMonthlyReport()
         {
             return _context.Expenses
-                    .GroupBy(e => e.Date.ToString("yyyy-MM"))
-                    .ToDictionary(g => g.Key, g => g.Sum(e => e.Amount));
+                    .GroupBy(e => new { Year = e.Date.Year, Month = e.Date.Month }) // Group by Year & Month
+        .Select(g => new MonthlyExpenseReport
+        {
+            Year = g.Key.Year,
+            Month = g.Key.Month,
+            TotalAmount = g.Sum(e => e.Amount), // Sum the expenses
+            ExpenseCount = g.Count() // Count number of expenses
+        })
+        .OrderByDescending(g => g.Year).ThenByDescending(g => g.Month) // Order by latest
+        .ToList();
 
         }
 

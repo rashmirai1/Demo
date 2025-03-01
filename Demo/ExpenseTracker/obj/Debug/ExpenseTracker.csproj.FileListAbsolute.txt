@@ -91,3 +91,9 @@ C:\Users\anuja\source\repos\ExpenseTracker\ExpenseTracker\bin\Microsoft.CodeDom.
 C:\Users\anuja\source\repos\ExpenseTracker\ExpenseTracker\obj\Debug\ExpenseTracker.csproj.CopyComplete
 C:\Users\anuja\source\repos\ExpenseTracker\ExpenseTracker\obj\Debug\ExpenseTracker.dll
 C:\Users\anuja\source\repos\ExpenseTracker\ExpenseTracker\obj\Debug\ExpenseTracker.pdb
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.csproj.AssemblyReference.cache
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.Migrations.Create.resources
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.csproj.GenerateResource.cache
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.csproj.CoreCompileInputs.cache
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.dll
+C:\Repos\Demo\Demo\ExpenseTracker\obj\Debug\ExpenseTracker.pdb
